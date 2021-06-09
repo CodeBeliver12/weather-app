@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TextInput, FlatList } from 'react-native';
+import { View, Text, TextInput, FlatList, ActivityIndicator } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import { Button, CityListItem } from '../../components';
@@ -15,7 +15,7 @@ const FisrtScreen = (props) => {
     const { navigation } = props;
     const dispatch = useDispatch();
 
-    const { cities } = useSelector((state) => state.appState);
+    const { cities, loadingCities } = useSelector((state) => state.appState);
 
     useEffect(() => {
         dispatch(getCitiesList());
@@ -28,17 +28,23 @@ const FisrtScreen = (props) => {
 
     return (
         <View style={styles.container}>
-            <FlatList
-                data={cities}
-                renderItem={({ item, index }) => {
-                    return <CityListItem
-                        key={String(index)}
-                        item={item}
-                        onPress={() => onItemPress(item)} />
-                }}
-                contentContainerStyle={{ flexGrow: 1 }}
-                keyExtractor={(item, index) => String(index)}
-            />
+            {loadingCities && cities.length == 0 ? (
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                    <ActivityIndicator size={'large'} color={Colors.ui_primary} />
+                </View>
+            ) : (
+                <FlatList
+                    data={cities}
+                    renderItem={({ item, index }) => {
+                        return <CityListItem
+                            key={String(index)}
+                            item={item}
+                            onPress={() => onItemPress(item)} />
+                    }}
+                    contentContainerStyle={{ flexGrow: 1 }}
+                    keyExtractor={(item, index) => String(index)}
+                />
+            )}
         </View>
     );
 };

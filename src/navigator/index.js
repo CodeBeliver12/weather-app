@@ -2,13 +2,20 @@ import React from 'react';
 import { Platform, StatusBar, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import SplashScreen from 'react-native-splash-screen';
+
 import { navigationRef } from './root-navigation';
 import { FirstScreen, SecondScreen } from '../screens';
 import { Colors } from '../constants';
+import { useEffect } from 'react';
 
 const RootStack = createStackNavigator();
 
 export default function () {
+
+    useEffect(() => {
+        SplashScreen.hide();
+    }, [])
 
     return (
         <View style={{ flex: 1 }}>
