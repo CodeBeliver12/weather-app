@@ -1,4 +1,5 @@
 export const Colors = {
+    ui_primary: "#00804A",
     ui_black: '#000000',
     ui_white: '#FFFFFF',
     ui_grey: 'grey',

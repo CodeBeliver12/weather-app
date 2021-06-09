@@ -2,7 +2,7 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-community/async-storage';
 
 
-export const apiRoot = 'https://test.mioamoreshop.com/rest/V1/';
+export const apiRoot = 'http://api.openweathermap.org/';
 
 export const client = axios.create({
     baseURL: apiRoot,
