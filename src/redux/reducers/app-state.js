@@ -19,9 +19,11 @@ export default function (state = initialState, action) {
             };
 
         case GET_CITIES_LIST_SUCCESS:
+            console.log("GET_CITIES_LIST_SUCCESS", action.payload)
             return {
                 ...state,
                 loadingCities: false,
+                cities: action.payload
             };
 
         case GET_CITIES_LIST_FAIL:

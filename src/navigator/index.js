@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { navigationRef } from './root-navigation';
 import { FirstScreen, SecondScreen } from '../screens';
+import { Colors } from '../constants';
 
 const RootStack = createStackNavigator();
 
@@ -19,19 +20,26 @@ export default function () {
                 <RootStack.Navigator
                     initialRouteName={'first-screen'}
                     screenOptions={{
-                        headerShown: false,
+                        headerShown: true,
                         animationEnabled: false,
+                        headerStyle: {
+                            backgroundColor: Colors.ui_primary
+                        }
                     }}
                 >
                     <RootStack.Screen
                         name={'first-screen'}
                         component={FirstScreen}
-                        options={{ title: 'First Screen' }}
+                        options={{
+                            title: 'WeatherApp', headerTitleAlign: 'center', headerTintColor: Colors.ui_white
+                        }}
                     />
                     <RootStack.Screen
                         name={'second-screen'}
                         component={SecondScreen}
-                        options={{ title: 'Second Screen' }}
+                        options={{
+                            title: 'WeatherApp', headerTitleAlign: 'center', headerTintColor: Colors.ui_white
+                        }}
                     />
                 </RootStack.Navigator>
             </NavigationContainer>

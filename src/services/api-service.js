@@ -26,10 +26,11 @@ client.interceptors.request.use(
 // Add a response interceptor
 client.interceptors.response.use(
     function (response) {
+        // console.log("API response...", response)
         return response;
     },
     function (error) {
-        alert(error.response.data.message)
+        console.log("API Error...", error)
         return Promise.reject(error);
     },
 );
